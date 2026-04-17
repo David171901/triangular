@@ -10,42 +10,42 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full h-[920px] px-6 py-14 flex flex-col justify-between">
+    <footer className="flex h-[920px] w-full flex-col justify-between px-6 py-14">
       <div>
-        <h2 className="font-sans font-normal not-italic text-[37px] leading-[35px] tracking-[-2px] uppercase text-brand-white">
+        <h2 className="text-brand-white font-sans text-[37px] leading-[35px] font-normal tracking-[-2px] uppercase not-italic">
           QUEREMOS{"\n"}ESCUCHARTE
         </h2>
 
         <div className="mt-16 flex flex-col">
-          <div className="h-px w-full bg-brand-purple/60" />
+          <div className="bg-brand-purple/60 h-px w-full" />
 
-          <div className="py-6 flex items-center justify-between gap-6">
+          <div className="flex items-center justify-between gap-6 py-6">
             <div className="flex-1" />
             <div className="text-right">
-              <p className="font-axiforma font-normal not-italic text-[14px] leading-[20px] tracking-[0px] text-brand-white/70">
+              <p className="font-axiforma text-brand-white/70 text-[14px] leading-[20px] font-normal tracking-[0px] not-italic">
                 Correo
               </p>
-              <p className="font-axiforma font-medium not-italic text-[20px] leading-[26px] tracking-[0px] text-brand-white">
+              <p className="font-axiforma text-brand-white text-[20px] leading-[26px] font-medium tracking-[0px] not-italic">
                 hola@triangular.com
               </p>
             </div>
           </div>
 
-          <div className="h-px w-full bg-brand-purple/60" />
+          <div className="bg-brand-purple/60 h-px w-full" />
 
-          <div className="py-6 flex items-center justify-between gap-6">
+          <div className="flex items-center justify-between gap-6 py-6">
             <div className="flex-1" />
             <div className="text-right">
-              <p className="font-axiforma font-normal not-italic text-[14px] leading-[20px] tracking-[0px] text-brand-white/70">
+              <p className="font-axiforma text-brand-white/70 text-[14px] leading-[20px] font-normal tracking-[0px] not-italic">
                 WhatsApp
               </p>
-              <p className="font-axiforma font-medium not-italic text-[20px] leading-[26px] tracking-[0px] text-brand-white">
+              <p className="font-axiforma text-brand-white text-[20px] leading-[26px] font-medium tracking-[0px] not-italic">
                 948 523 897
               </p>
             </div>
           </div>
 
-          <div className="h-px w-full bg-brand-purple/60" />
+          <div className="bg-brand-purple/60 h-px w-full" />
         </div>
       </div>
 
@@ -55,7 +55,7 @@ export default function Footer() {
             type="button"
             onClick={scrollToTop}
             aria-label="Volver arriba"
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-brand-white/35 bg-transparent transition-colors active:bg-brand-white/10"
+            className="border-brand-white/35 active:bg-brand-white/10 flex h-12 w-12 items-center justify-center rounded-full border bg-transparent transition-colors"
           >
             <ChevronUp size={18} className="text-brand-white/80" />
           </button>
@@ -67,10 +67,10 @@ export default function Footer() {
             alt="Triangular"
             width={360}
             height={90}
-            className="w-full max-w-[420px] h-auto"
+            className="h-auto w-full max-w-[420px]"
             priority={false}
           />
-          <p className="font-axiforma font-normal not-italic text-[14px] leading-[20px] tracking-[0px] text-brand-purple">
+          <p className="font-axiforma text-brand-purple text-[14px] leading-[20px] font-normal tracking-[0px] not-italic">
             ©2025
           </p>
         </div>

@@ -18,22 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="es"
-      className={`${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="es" className={`${geistMono.variable} h-full antialiased`}>
       <head>
         <link rel="preconnect" href="https://fonts.cdnfonts.com" />
-        <link
-          href="https://fonts.cdnfonts.com/css/geometos"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.cdnfonts.com/css/axiforma"
-          rel="stylesheet"
-        />
+        <link href="https://fonts.cdnfonts.com/css/geometos" rel="stylesheet" />
+        <link href="https://fonts.cdnfonts.com/css/axiforma" rel="stylesheet" />
       </head>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col font-sans">{children}</body>
     </html>
   );
 }

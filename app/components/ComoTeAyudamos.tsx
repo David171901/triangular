@@ -1,9 +1,10 @@
 "use client";
 
+import clsx from "clsx";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, Code } from "lucide-react";
 
-interface AccordionItem {
+interface Item {
   number: string;
   title: string;
   preview: string;
@@ -12,7 +13,7 @@ interface AccordionItem {
   sections?: { title: string; items: string[] }[];
 }
 
-const DATA: AccordionItem[] = [
+const DATA: Item[] = [
   {
     number: "01",
     title: "DISEÑO WEB\nUX / UI",
@@ -91,54 +92,77 @@ function AccordionRow({
   isOpen,
   onToggle,
 }: {
-  item: AccordionItem;
+  item: Item;
   isOpen: boolean;
   onToggle: () => void;
 }) {
   return (
     <div className="border-b border-white/25 py-5">
-      <p className="font-sans font-normal not-italic text-sm leading-9 tracking-tighter text-brand-white mb-2 [text-edge:cap_alphabetic] [leading-trim:both]">
+      <p className="text-brand-white mb-2 font-sans text-sm leading-9 font-normal tracking-tighter not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
         {item.number}
       </p>
 
       <button
         onClick={onToggle}
-        className="w-full flex items-start justify-between gap-3 text-left"
+        className="flex w-full items-start justify-between gap-3 text-left"
       >
-        <h3 className="font-sans font-normal not-italic text-2xl leading-6 -tracking-widest uppercase text-brand-white whitespace-pre-line [text-edge:cap_alphabetic] [leading-trim:both]">
+        <h3 className="text-brand-white font-sans text-2xl leading-6 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
           {item.title}
         </h3>
 
-        <span className="shrink-0 mt-1 flex items-center justify-center w-8 h-8 rounded-full border border-white/25">
+        <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/25">
           {isOpen ? (
-            <ChevronUp size={16} className="text-white" />
+            <ChevronUp size={16} className="text-brand-white" />
           ) : (
-            <ChevronDown size={16} className="text-white" />
+            <ChevronDown size={16} className="text-brand-white" />
           )}
         </span>
       </button>
 
+      <div className="relative mt-4">
+        <p
+          aria-hidden={isOpen || undefined}
+          className={clsx(
+            "font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic]",
+            "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
+            isOpen
+              ? "pointer-events-none absolute inset-x-0 top-0 -translate-y-0.5 opacity-0"
+              : "relative z-10 translate-y-0 opacity-100",
+          )}
+        >
+          {item.preview}
+        </p>
+        <p
+          aria-hidden={!isOpen || undefined}
+          className={clsx(
+            "font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic]",
+            "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
+            isOpen
+              ? "relative z-10 translate-y-0 opacity-100"
+              : "pointer-events-none absolute inset-x-0 top-0 translate-y-0.5 opacity-0",
+          )}
+        >
+          {item.description}
+        </p>
+      </div>
+
       <div
-        className={[
+        className={clsx(
           "grid transition-[grid-template-rows] duration-500 ease-out motion-reduce:transition-none",
-          isOpen ? "grid-rows-[1fr] mt-4" : "grid-rows-[0fr] mt-0",
-        ].join(" ")}
+          isOpen ? "mt-4 grid-rows-[1fr]" : "mt-0 grid-rows-[0fr]",
+        )}
       >
         <div
-          className={[
-            "min-h-0 overflow-hidden transition-[opacity,transform] duration-500 ease-out motion-reduce:transition-none",
-            isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1",
-          ].join(" ")}
+          className={clsx(
+            "min-h-0 overflow-hidden transition-opacity duration-300 ease-out motion-reduce:transition-none",
+            isOpen ? "opacity-100" : "opacity-0",
+          )}
         >
-          <p className="font-axiforma font-normal not-italic text-base leading-6 tracking-normal text-brand-white mb-4 [text-edge:cap_alphabetic] [leading-trim:both]">
-            {item.description}
-          </p>
-
           {item.sections && item.sections.length > 0 ? (
             <div className="flex flex-col gap-5">
               {item.sections.map((section) => (
                 <div key={section.title}>
-                  <p className="font-axiforma font-medium not-italic text-[15px] leading-[22px] tracking-[0px] text-brand-white mb-3 [text-edge:cap_alphabetic] [leading-trim:both]">
+                  <p className="font-axiforma text-brand-white mb-3 text-[15px] leading-[22px] font-medium tracking-[0px] not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
                     {section.title}
                   </p>
                   <ul className="flex flex-col gap-3">
@@ -147,9 +171,9 @@ function AccordionRow({
                         <Code
                           size={12}
                           color="white"
-                          className="shrink-0 mt-[3px]"
+                          className="mt-[3px] shrink-0"
                         />
-                        <span className="font-axiforma font-normal not-italic text-base leading-6 tracking-normal text-brand-white [text-edge:cap_alphabetic] [leading-trim:both]">
+                        <span className="font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
                           {bullet}
                         </span>
                       </li>
@@ -162,22 +186,18 @@ function AccordionRow({
             <ul className="flex flex-col gap-3">
               {item.items.map((bullet) => (
                 <li key={bullet} className="flex items-start gap-2">
-                  <Code size={12} color="white" className="shrink-0 mt-[3px]" />
-                  <span className="font-axiforma font-normal not-italic text-base leading-6 tracking-normal text-brand-white [text-edge:cap_alphabetic] [leading-trim:both]">
+                  <Code size={12} color="white" className="mt-[3px] shrink-0" />
+                  <span className="font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
                     {bullet}
                   </span>
                 </li>
               ))}
             </ul>
-          ) : null}
+          ) : (
+            <div className="min-h-0" aria-hidden />
+          )}
         </div>
       </div>
-
-      {!isOpen && (
-        <p className="font-axiforma font-normal not-italic text-base leading-6 tracking-normal text-brand-white mb-4 [text-edge:cap_alphabetic] [leading-trim:both]">
-          {item.preview}
-        </p>
-      )}
     </div>
   );
 }
@@ -188,12 +208,12 @@ export default function ComoTeAyudamos() {
   const toggle = (i: number) => setOpenIndex((prev) => (prev === i ? null : i));
 
   return (
-    <section className="w-full px-6 pt-12 pb-16">
+    <section className="w-full px-6 pt-16 pb-36">
       <div className="mb-10">
-        <h2 className="font-sans font-normal not-italic text-4xl leading-9 -tracking-widest uppercase text-brand-cyan text-right mb-6 [text-edge:cap_alphabetic] [leading-trim:both]">
+        <h2 className="text-brand-cyan mb-6 text-right font-sans text-4xl leading-9 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
           CÓMO{"\n"}TE AYUDAMOS{"\n"}A CRECER
         </h2>
-        <p className="font-axiforma font-normal not-italic text-base leading-6 tracking-normal text-brand-white text-right [text-edge:cap_alphabetic] [leading-trim:both]">
+        <p className="font-axiforma text-brand-white text-right text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
           Te ofrecemos soluciones pensadas para que tu marca crezca y llegue a
           más personas.
         </p>

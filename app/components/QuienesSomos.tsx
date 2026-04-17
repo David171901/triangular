@@ -120,22 +120,22 @@ export default function QuienesSomos() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full flex flex-col">
+    <section ref={sectionRef} className="flex w-full flex-col">
       <div
         ref={overlayRef}
         className="fixed z-10 w-1/2 pl-6 will-change-[top]"
         style={{ top: 0, left: 0 }}
       >
-        <h2 className="font-sans font-normal not-italic text-4xl leading-10 -tracking-widest uppercase text-brand-cyan [text-edge:cap_alphabetic] [leading-trim:both]">
+        <h2 className="text-brand-cyan font-sans text-4xl leading-10 font-normal -tracking-widest uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
           ¿Quiénes somos?
         </h2>
-        <p className="font-axiforma font-medium not-italic text-base leading-6 -tracking-wide text-brand-white [text-edge:cap_alphabetic] [leading-trim:both]">
+        <p className="font-axiforma text-brand-white text-base leading-6 font-medium -tracking-wide not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
           En Triangular, unimos experiencia en ingeniería, publicidad y UX/UI
           para crear estrategias que sumen valor a tu marca.
         </p>
       </div>
 
-      <div className="relative flex flex-col w-full">
+      <div className="relative flex w-full flex-col">
         <div ref={firstImageRef} className="relative w-full">
           <Image
             src="/images/IMG_CHICO_LENTES.png"

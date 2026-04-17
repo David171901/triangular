@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Triangular — Landing Page (Mobile First)
 
-## Getting Started
+Landing page para **Triangular**, construida en **Next.js (App Router)** con **Tailwind CSS v4**. El desarrollo está pensado **mobile-first**.
 
-First, run the development server:
+## Requisitos
+
+- Node.js + npm
+
+## Ejecutar en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura principal
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Entrada**: `app/page.tsx`
+- **Secciones**:
+  - `app/components/QuienesSomos.tsx`
+  - `app/components/ComoTeAyudamos.tsx` (acordeón)
+  - `app/components/Footer.tsx`
+- **Assets**: `public/images/`
 
-## Learn More
+## Diseño (tokens)
 
-To learn more about Next.js, take a look at the following resources:
+Los tokens se definen en `app/globals.css` usando `@theme inline` (Tailwind v4).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Colores (brand)**:
+  - `brand-muted`: `#D9D9D9`
+  - `brand-deep`: `#2F1B56`
+  - `brand-purple`: `#AC40FF`
+  - `brand-cyan`: `#3DFFD8`
+  - `brand-yellow`: `#FFE945`
+  - `brand-white`: `#FFFFFF`
+- **Gradiente de sección**:
+  - Utilidad: `bg-brand-gradient-section`
+- **Fuentes**:
+  - `font-sans` → **Geometos**
+  - `font-axiforma` → **Axiforma**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> Nota: `leading-trim` / `text-edge` se usan como propiedades arbitrarias en Tailwind y su soporte varía por navegador.
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev`: servidor de desarrollo
+- `npm run build`: build de producción
+- `npm run start`: servir build

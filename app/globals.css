@@ -13,10 +13,12 @@
   --brand-cyan: #3dffd8;
   --brand-yellow: #ffe945;
   --brand-white: #ffffff;
-  /* Gradientes de sección (hero / bloques morados) */
-  --brand-gradient-section-from: #4937fc;
-  --brand-gradient-section-50: #350048;
-  --brand-gradient-section-to: #000116;
+  --brand-violet-400: #7816fe;
+  --brand-violet-500: #9700ff;
+  --brand-violet-600: #4937fc;
+  --brand-violet-700: #4f3cfc;
+  --brand-violet-800: #350048;
+  --brand-violet-900: #000116;
 }
 
 @theme inline {
@@ -35,8 +37,16 @@
 @utility bg-brand-gradient-section {
   background: linear-gradient(
     180deg,
-    var(--brand-gradient-section-from) 0%,
-    var(--brand-gradient-section-50) 50%,
-    var(--brand-gradient-section-to) 100%
+    var(--brand-violet-500) 0%,
+    var(--brand-violet-600) 50%,
+    var(--brand-violet-900) 100%
+  );
+}
+
+@utility bg-brand-gradient-card {
+  background: linear-gradient(
+    360deg,
+    var(--brand-violet-500) 0%,
+    var(--brand-violet-700) 100%
   );
 }
