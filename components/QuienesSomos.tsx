@@ -3,18 +3,11 @@
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 
-/** Interpolación hacia el objetivo cada frame (más bajo = más inercia / más suave). */
-const SMOOTH_LERP = 0.09;
-const SNAP_PX = 0.35;
-
 export default function QuienesSomos() {
   const sectionRef = useRef<HTMLElement>(null);
   const firstImageRef = useRef<HTMLDivElement>(null);
   const lastImageRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
-  const targetTopPxRef = useRef<number | null>(null);
-  const smoothTopPxRef = useRef<number | null>(null);
-  const rafIdRef = useRef<number | null>(null);
 
   useLayoutEffect(() => {
     /**
@@ -49,41 +42,11 @@ export default function QuienesSomos() {
       return targetCenterY - overlayH / 2;
     };
 
-    const applySmoothTop = () => {
-      const el = overlayRef.current;
-      const target = targetTopPxRef.current;
-      if (el == null || target == null) {
-        rafIdRef.current = null;
-        return;
-      }
-
-      let smooth = smoothTopPxRef.current;
-      if (smooth == null) smooth = target;
-
-      smooth += (target - smooth) * SMOOTH_LERP;
-      smoothTopPxRef.current = smooth;
-
-      if (Math.abs(target - smooth) <= SNAP_PX) {
-        smooth = target;
-        smoothTopPxRef.current = target;
-        el.style.top = `${smooth}px`;
-        rafIdRef.current = null;
-        return;
-      }
-
-      el.style.top = `${smooth}px`;
-      rafIdRef.current = requestAnimationFrame(applySmoothTop);
-    };
-
     const update = () => {
       const next = computeTargetTop();
-      if (next == null) return;
-
-      targetTopPxRef.current = next;
-
-      if (rafIdRef.current == null) {
-        rafIdRef.current = requestAnimationFrame(applySmoothTop);
-      }
+      const el = overlayRef.current;
+      if (next == null || el == null) return;
+      el.style.top = `${next}px`;
     };
 
     update();
@@ -112,10 +75,6 @@ export default function QuienesSomos() {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
       ro?.disconnect();
-      if (rafIdRef.current != null) {
-        cancelAnimationFrame(rafIdRef.current);
-        rafIdRef.current = null;
-      }
     };
   }, []);
 

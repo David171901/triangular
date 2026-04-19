@@ -20,7 +20,7 @@ function Card({ number, title, description }: CardProps) {
   const [open, setOpen] = useState(false);
 
   return (
-    <article
+    <section
       className={clsx(
         "bg-brand-gradient-card relative h-56 overflow-hidden rounded-xl px-8 py-8 shadow-sm",
         "transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]",
@@ -58,7 +58,7 @@ function Card({ number, title, description }: CardProps) {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Cerrar" : "Abrir"}
           aria-expanded={open}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/40 transition-colors active:bg-white/10"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/50 transition-colors active:bg-white/25"
         >
           {open ? (
             <ChevronDown size={16} className="text-brand-white" />
@@ -91,7 +91,7 @@ function Card({ number, title, description }: CardProps) {
           </div>
         </div>
       </div>
-    </article>
+    </section>
   );
 }
 

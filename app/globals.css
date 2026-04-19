@@ -11,6 +11,9 @@
   --brand-deep: #2f1b56;
   --brand-purple: #ac40ff;
   --brand-cyan: #3dffd8;
+  --brand-lilac: #775dfd;
+  --brand-plum: #3c2488;
+  --brand-fuchsia: #fe51d8;
   --brand-yellow: #ffe945;
   --brand-white: #ffffff;
   --brand-violet-400: #7816fe;
@@ -22,16 +25,22 @@
 }
 
 @theme inline {
+  --breakpoint-xs: 36rem;
+
   /* Geometos: tipografía base (font-sans) */
   --font-sans: "Geometos", ui-sans-serif, system-ui, sans-serif;
   /* Axiforma: usar con font-axiforma (títulos, bloques, etc.) */
   --font-axiforma: "Axiforma", ui-sans-serif, system-ui, sans-serif;
+  /* Colors */
   --color-brand-muted: var(--brand-muted);
   --color-brand-deep: var(--brand-deep);
   --color-brand-purple: var(--brand-purple);
   --color-brand-cyan: var(--brand-cyan);
   --color-brand-yellow: var(--brand-yellow);
   --color-brand-white: var(--brand-white);
+  --color-brand-lilac: var(--brand-lilac);
+  --color-brand-plum: var(--brand-plum);
+  --color-brand-fuchsia: var(--brand-fuchsia);
 }
 
 @utility bg-brand-gradient-section {
@@ -49,4 +58,34 @@
     var(--brand-violet-500) 0%,
     var(--brand-violet-700) 100%
   );
+}
+
+@keyframes potencia-line-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-title {
+  animation: potencia-line-enter 0.45s ease-out both;
+}
+
+@keyframes button-form-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-button-form {
+  animation: button-form-in 1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }

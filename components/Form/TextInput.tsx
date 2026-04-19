@@ -1,0 +1,147 @@
+// # TODO: review code
+"use client";
+
+import clsx from "clsx";
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
+
+export type TextInputProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "className"
+> & {
+  label: string;
+  /** Mensaje de error (p. ej. errors.campo?.message de react-hook-form) */
+  error?: string;
+  /** Muestra asterisco en la etiqueta */
+  required?: boolean;
+  className?: string;
+  inputClassName?: string;
+};
+
+function mergeRefs<T>(
+  ...refs: (React.Ref<T> | undefined)[]
+): React.RefCallback<T> {
+  return (value) => {
+    for (const ref of refs) {
+      if (ref == null) continue;
+      if (typeof ref === "function") ref(value);
+      else (ref as React.RefObject<T | null>).current = value;
+    }
+  };
+}
+
+/**
+ * Input de texto para usar con {@link https://react-hook-form.com/ react-hook-form}:
+ *
+ * ```tsx
+ * const { register, formState: { errors } } = useForm();
+ * <TextInput
+ *   label="Nombre"
+ *   required
+ *   placeholder="Escribe tu nombre"
+ *   error={errors.nombre?.message as string | undefined}
+ *   {...register("nombre", { required: "Ingresa tu nombre" })}
+ * />
+ * ```
+ */
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+  function TextInput(
+    {
+      label,
+      error,
+      required,
+      className,
+      inputClassName,
+      onChange,
+      defaultValue,
+      value,
+      ...restProps
+    },
+    forwardedRef,
+  ) {
+    const { ref: registerRef, ...rest } = restProps as typeof restProps & {
+      ref?: React.Ref<HTMLInputElement>;
+    };
+    const id = useId();
+    const innerRef = useRef<HTMLInputElement | null>(null);
+    const [filled, setFilled] = useState(() => {
+      if (value != null && value !== "") return true;
+      if (defaultValue != null && String(defaultValue) !== "") return true;
+      return false;
+    });
+
+    const syncFilledFromDom = useCallback(() => {
+      const el = innerRef.current;
+      if (!el) return;
+      setFilled(el.value.length > 0);
+    }, []);
+
+    useEffect(() => {
+      syncFilledFromDom();
+    }, [syncFilledFromDom, value]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFilled(e.target.value.length > 0);
+      onChange?.(e);
+    };
+
+    const inputBg = error
+      ? "bg-brand-lilac"
+      : filled
+        ? "bg-brand-plum"
+        : "bg-brand-lilac";
+
+    return (
+      <div className={clsx("flex flex-col", className)}>
+        <label
+          htmlFor={id}
+          className="font-axiforma text-brand-white mb-3 text-base leading-6 font-medium tracking-normal normal-case not-italic [leading-trim:both] [text-edge:cap_alphabetic]"
+        >
+          {label}
+          {required ? "*" : ""}
+        </label>
+        <input
+          id={id}
+          ref={mergeRefs(
+            innerRef,
+            registerRef as React.Ref<HTMLInputElement> | undefined,
+            forwardedRef,
+          )}
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
+          className={clsx(
+            "font-axiforma text-brand-white box-border h-14 w-full rounded-lg px-3.5 py-4 text-base leading-5",
+            "normal-case",
+            "placeholder:text-brand-muted",
+            "ring-0 outline-none focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none",
+            inputBg,
+            inputClassName,
+          )}
+          autoCapitalize="none"
+          autoCorrect="off"
+          onChange={handleChange}
+          defaultValue={defaultValue}
+          value={value}
+          {...rest}
+        />
+        {error ? (
+          <p
+            id={`${id}-error`}
+            role="alert"
+            className="font-axiforma text-brand-fuchsia mt-1.5 text-right text-sm leading-6 font-medium tracking-normal normal-case not-italic [leading-trim:both] [text-edge:cap_alphabetic]"
+          >
+            {error}
+          </p>
+        ) : null}
+      </div>
+    );
+  },
+);
+
+export default TextInput;

@@ -97,7 +97,7 @@ function AccordionRow({
   onToggle: () => void;
 }) {
   return (
-    <div className="border-b border-white/25 py-5">
+    <section className="border-b border-white/25 py-5">
       <p className="text-brand-white mb-2 font-sans text-sm leading-9 font-normal tracking-tighter not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
         {item.number}
       </p>
@@ -198,7 +198,7 @@ function AccordionRow({
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
