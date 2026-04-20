@@ -10,7 +10,7 @@ const HERO_ROTATIONS = [
   ["CON IDEAS", "EFECTIVAS"],
 ];
 
-const ROTATION_MS = 1250;
+const ROTATION_MS = 1750;
 
 export default function PotenciaTuMarca() {
   const [index, setIndex] = useState(0);
@@ -26,7 +26,7 @@ export default function PotenciaTuMarca() {
 
   return (
     <section aria-label="Potencia tu marca" className="relative isolate w-full">
-      <div className="xs:aspect-1920/1538 relative aspect-430/966 w-full">
+      <div className="xs:aspect-1920/1538 relative aspect-430/810 w-full">
         <div
           className="bg-brand-deep pointer-events-none absolute inset-0 z-0 overflow-hidden"
           aria-hidden
@@ -65,8 +65,8 @@ export default function PotenciaTuMarca() {
               priority
             />
           </header>
-          <div className="absolute top-3/5 right-0 left-0">
-            <h1 className="flex flex-col items-center text-center font-sans text-5xl leading-11 font-normal -tracking-widest text-white uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
+          <div className="absolute top-1/2 right-0 left-0">
+            <h1 className="flex flex-col items-center text-center font-sans text-4xl leading-11 font-normal -tracking-widest text-white uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
               <span>POTENCIA</span>
               <span>TU MARCA</span>
               <span

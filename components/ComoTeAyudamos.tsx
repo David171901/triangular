@@ -98,7 +98,7 @@ function AccordionRow({
 }) {
   return (
     <section className="border-b border-white/25 py-5">
-      <p className="text-brand-white mb-2 font-sans text-sm leading-9 font-normal tracking-tighter not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
+      <p className="text-brand-white mb-6 font-sans text-sm font-normal tracking-tighter not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
         {item.number}
       </p>
 
@@ -110,11 +110,11 @@ function AccordionRow({
           {item.title}
         </h3>
 
-        <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/25">
+        <span className="border-brand-indigo mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border">
           {isOpen ? (
-            <ChevronUp size={16} className="text-brand-white" />
+            <ChevronUp size={24} className="text-brand-white" />
           ) : (
-            <ChevronDown size={16} className="text-brand-white" />
+            <ChevronDown size={24} className="text-brand-white" />
           )}
         </span>
       </button>
@@ -155,7 +155,7 @@ function AccordionRow({
         <div
           className={clsx(
             "min-h-0 overflow-hidden transition-opacity duration-300 ease-out motion-reduce:transition-none",
-            isOpen ? "opacity-100" : "opacity-0",
+            isOpen ? "opacity-100 animate-accordion-open-bounce motion-reduce:animate-none" : "opacity-0",
           )}
         >
           {item.sections && item.sections.length > 0 ? (

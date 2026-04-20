@@ -58,12 +58,12 @@ function Card({ number, title, description }: CardProps) {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Cerrar" : "Abrir"}
           aria-expanded={open}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/50 transition-colors active:bg-white/25"
+          className="border-brand-indigo flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors active:bg-white/25"
         >
           {open ? (
-            <ChevronDown size={16} className="text-brand-white" />
+            <ChevronDown size={24} className="text-brand-white" />
           ) : (
-            <ChevronUp size={16} className="text-brand-white" strokeWidth={2} />
+            <ChevronUp size={24} className="text-brand-white" strokeWidth={2} />
           )}
         </button>
       </div>
