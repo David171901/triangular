@@ -1,4 +1,3 @@
-// # TODO: review code
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -144,10 +143,9 @@ export default function EmpezamosJuntos() {
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="border-brand-white font-axiforma text-brand-white hover:bg-brand-white/10 active:bg-brand-white/20 box-border flex h-11 items-center justify-center rounded-lg border bg-transparent px-4 text-base leading-none font-bold -tracking-tight uppercase not-italic transition-colors [leading-trim:both] [text-edge:cap_alphabetic]"
+                  className="border-brand-white font-axiforma text-brand-white hover:bg-brand-white/25 active:bg-brand-white/25 box-border flex h-11 items-center justify-center rounded-lg border bg-transparent px-4 text-base leading-none font-bold -tracking-tight uppercase not-italic transition-colors [leading-trim:both] [text-edge:cap_alphabetic]"
                 >
-                  {isSubmitting ? "ENVIANDO…" : "CONFIRMAR"}
+                  CONFIRMAR
                 </button>
               </div>
             )}

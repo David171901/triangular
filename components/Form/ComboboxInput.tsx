@@ -1,4 +1,3 @@
-// # TODO: review code
 "use client";
 
 import clsx from "clsx";

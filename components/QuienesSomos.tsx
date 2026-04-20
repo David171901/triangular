@@ -85,7 +85,7 @@ export default function QuienesSomos() {
         className="fixed z-10 w-1/2 pl-6 will-change-[top]"
         style={{ top: 0, left: 0 }}
       >
-        <h2 className="text-brand-cyan font-sans text-4xl leading-10 font-normal -tracking-widest uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
+        <h2 className="text-brand-cyan font-sans text-4xl leading-9 font-normal -tracking-widest uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
           ¿Quiénes somos?
         </h2>
         <p className="font-axiforma text-brand-white text-base leading-6 font-medium -tracking-wide not-italic [leading-trim:both] [text-edge:cap_alphabetic]">

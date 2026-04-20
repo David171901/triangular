@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /**
- * Tokens de color — landing Triangular
+ * Color Tokens — landing Triangular
  *
  * Tailwind: bg-brand-muted, text-brand-cyan, ring-brand-yellow, etc.
  * CSS / inline: var(--brand-cyan) o var(--color-brand-cyan) vía @theme
@@ -22,6 +22,9 @@
   --brand-violet-700: #4f3cfc;
   --brand-violet-800: #350048;
   --brand-violet-900: #000116;
+  --brand-violet-bloom: #4c37fb;
+  --brand-violet-night: #1b067a;
+  --brand-violet-ink: #1e0146;
 }
 
 @theme inline {
@@ -41,12 +44,32 @@
   --color-brand-lilac: var(--brand-lilac);
   --color-brand-plum: var(--brand-plum);
   --color-brand-fuchsia: var(--brand-fuchsia);
+  --color-brand-violet-bloom: var(--brand-violet-bloom);
+  --color-brand-violet-night: var(--brand-violet-night);
+  --color-brand-violet-ink: var(--brand-violet-ink);
 }
 
-@utility bg-brand-gradient-section {
+@utility bg-home-page {
   background: linear-gradient(
     180deg,
-    var(--brand-violet-500) 0%,
+    var(--brand-violet-bloom) 0%,
+    var(--brand-violet-600) 50%,
+    var(--brand-violet-night) 100%
+  );
+}
+
+@utility bg-footer-home-page {
+  background: linear-gradient(
+    180deg,
+    var(--brand-violet-ink) 0%,
+    var(--brand-violet-900) 100%
+  );
+}
+
+@utility bg-contact-page {
+  background: linear-gradient(
+    180deg,
+    var(--brand-violet-bloom) 0%,
     var(--brand-violet-600) 50%,
     var(--brand-violet-900) 100%
   );
@@ -60,7 +83,7 @@
   );
 }
 
-@keyframes potencia-line-enter {
+@keyframes title-enter {
   from {
     opacity: 0;
     transform: translateY(0.35em);
@@ -72,7 +95,7 @@
 }
 
 @utility animate-title {
-  animation: potencia-line-enter 0.45s ease-out both;
+  animation: title-enter 0.45s ease-out both;
 }
 
 @keyframes button-form-in {

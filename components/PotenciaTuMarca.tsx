@@ -32,7 +32,7 @@ export default function PotenciaTuMarca() {
           aria-hidden
         >
           <Image
-            src="/images/HERO_WEB.png"
+            src="/images/POTENCIA_TU_MARCA.png"
             alt=""
             fill
             priority
@@ -40,7 +40,7 @@ export default function PotenciaTuMarca() {
             className="xs:hidden object-cover object-top"
           />
           <Image
-            src="/images/HERO_WEB_DESKTOP.png"
+            src="/images/POTENCIA_TU_MARCA_DESKTOP.png"
             alt=""
             fill
             priority
@@ -49,7 +49,12 @@ export default function PotenciaTuMarca() {
           />
         </div>
 
-        <div className="absolute inset-0 z-10 px-6 pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+        <div
+          aria-hidden
+          className="to-brand-violet-bloom xs:h-28 pointer-events-none absolute inset-x-0 bottom-0 z-5 h-24 bg-linear-to-b from-transparent"
+        />
+
+        <div className="absolute inset-0 z-10 px-6 pt-6 pb-10">
           <header className="relative z-10 flex w-full justify-end">
             <Image
               src="/images/LOGO_HERO.png"

@@ -1,4 +1,3 @@
-// # TODO: review code
 "use client";
 
 import clsx from "clsx";
@@ -16,9 +15,7 @@ export type TextareaInputProps = Omit<
   "className"
 > & {
   label: string;
-  /** Mensaje de error (p. ej. errors.campo?.message de react-hook-form) */
   error?: string;
-  /** Muestra asterisco en la etiqueta */
   required?: boolean;
   className?: string;
   textareaClassName?: string;
@@ -36,21 +33,6 @@ function mergeRefs<T>(
   };
 }
 
-/**
- * Área de texto para usar con {@link https://react-hook-form.com/ react-hook-form}:
- *
- * ```tsx
- * const { register, formState: { errors } } = useForm();
- * <TextareaInput
- *   label="Mensaje"
- *   required
- *   placeholder="Escribe tu mensaje"
- *   rows={5}
- *   error={errors.mensaje?.message as string | undefined}
- *   {...register("mensaje", { required: "Ingresa un mensaje" })}
- * />
- * ```
- */
 const TextareaInput = forwardRef<HTMLTextAreaElement, TextareaInputProps>(
   function TextareaInput(
     {

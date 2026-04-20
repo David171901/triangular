@@ -1,4 +1,3 @@
-// # TODO: review code
 "use client";
 
 import clsx from "clsx";
@@ -16,9 +15,7 @@ export type TextInputProps = Omit<
   "className"
 > & {
   label: string;
-  /** Mensaje de error (p. ej. errors.campo?.message de react-hook-form) */
   error?: string;
-  /** Muestra asterisco en la etiqueta */
   required?: boolean;
   className?: string;
   inputClassName?: string;
@@ -36,20 +33,6 @@ function mergeRefs<T>(
   };
 }
 
-/**
- * Input de texto para usar con {@link https://react-hook-form.com/ react-hook-form}:
- *
- * ```tsx
- * const { register, formState: { errors } } = useForm();
- * <TextInput
- *   label="Nombre"
- *   required
- *   placeholder="Escribe tu nombre"
- *   error={errors.nombre?.message as string | undefined}
- *   {...register("nombre", { required: "Ingresa tu nombre" })}
- * />
- * ```
- */
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   function TextInput(
     {
