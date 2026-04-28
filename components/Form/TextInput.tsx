@@ -84,7 +84,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       <div className={clsx("flex flex-col", className)}>
         <label
           htmlFor={id}
-          className="font-axiforma text-brand-white mb-3 text-base leading-6 font-medium tracking-normal normal-case not-italic [leading-trim:both] [text-edge:cap_alphabetic]"
+          className="font-axiforma text-brand-white mb-2 text-base leading-6 font-medium tracking-normal normal-case not-italic [leading-trim:both] [text-edge:cap_alphabetic]"
         >
           {label}
           {required ? "*" : ""}
@@ -99,7 +99,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           aria-invalid={error ? "true" : undefined}
           aria-describedby={error ? `${id}-error` : undefined}
           className={clsx(
-            "font-axiforma text-brand-white box-border h-14 w-full rounded-lg px-3.5 py-4 text-base leading-5",
+            "font-axiforma text-brand-white box-border h-13 w-full rounded-lg px-3.5 py-4 text-base leading-5",
             "normal-case",
             "placeholder:text-brand-muted",
             "ring-0 outline-none focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none",

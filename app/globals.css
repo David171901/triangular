@@ -18,6 +18,9 @@
   --brand-periwinkle: #7168ed;
   --brand-yellow: #ffe945;
   --brand-white: #ffffff;
+  --brand-blue: #5050fe;
+  --brand-violet-200: #9e43fe;
+  --brand-violet-300: #1a057c;
   --brand-violet-400: #7816fe;
   --brand-violet-500: #9700ff;
   --brand-violet-600: #4937fc;
@@ -51,32 +54,7 @@
   --color-brand-violet-bloom: var(--brand-violet-bloom);
   --color-brand-violet-night: var(--brand-violet-night);
   --color-brand-violet-ink: var(--brand-violet-ink);
-}
-
-@utility bg-home-page {
-  background: linear-gradient(
-    180deg,
-    var(--brand-violet-bloom) 0%,
-    var(--brand-violet-600) 50%,
-    var(--brand-violet-night) 100%
-  );
-}
-
-@utility bg-footer-home-page {
-  background: linear-gradient(
-    180deg,
-    var(--brand-violet-ink) 0%,
-    var(--brand-violet-900) 100%
-  );
-}
-
-@utility bg-contact-page {
-  background: linear-gradient(
-    180deg,
-    var(--brand-violet-bloom) 0%,
-    var(--brand-violet-600) 50%,
-    var(--brand-violet-900) 100%
-  );
+  --color-brand-blue: var(--brand-blue);
 }
 
 @utility bg-brand-gradient-card {
@@ -117,21 +95,137 @@
   animation: button-form-in 1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes accordion-open-bounce {
-  0% {
-    transform: translateY(-6px);
+/* HOME: Cómo te ayudamos a crecer */
+@utility bg-como-te-ayudamos-a-crecer {
+  background: linear-gradient(
+    180deg,
+    var(--brand-violet-600) 0%,
+    var(--brand-violet-800) 100%
+  );
+}
+
+/* HOME: Quienes somos */
+@utility bg-quienes-somos {
+  border: none;
+  box-shadow: none;
+  background: linear-gradient(
+    180deg,
+    var(--brand-violet-800) 0%,
+    var(--brand-violet-200) 100%
+  );
+}
+
+/* HOME: Nuestro método de trabajo */
+@utility bg-nuestro-metodo-de-trabajo {
+  background: linear-gradient(
+    180deg,
+    var(--brand-violet-200) 0%,
+    var(--brand-violet-300) 82.78%
+  );
+}
+
+/* HOME: Footer */
+@utility bg-footer-home-page {
+  background: linear-gradient(
+    180deg,
+    var(--brand-violet-ink) 0%,
+    var(--brand-violet-900) 100%
+  );
+}
+
+/* CONTACTO */
+@utility bg-contacto-page {
+  background: linear-gradient(
+    180deg,
+    var(--brand-violet-200) 0%,
+    var(--brand-violet-600) 50%,
+    var(--brand-violet-900) 100%
+  );
+}
+
+.container {
+  width: 100%;
+
+  @media (width >= 36rem /* 576px */) {
+    max-width: 36rem /* 576px */;
   }
-  55% {
-    transform: translateY(3px);
+  @media (width >= 40rem /* 640px */) {
+    max-width: 40rem /* 640px */;
   }
-  78% {
-    transform: translateY(-1px);
+  @media (width >= 48rem /* 768px */) {
+    max-width: 48rem /* 768px */;
   }
-  100% {
-    transform: translateY(0);
+  @media (width >= 64rem /* 1024px */) {
+    max-width: 64rem /* 1024px */;
+  }
+  @media (width >= 80rem /* 1280px */) {
+    max-width: 80rem /* 1280px */;
+  }
+  @media (width >= 96rem /* 1536px */) {
+    max-width: 96rem /* 1536px */;
+  }
+  @media (width >= 112rem /* 1792px */) {
+    max-width: 112rem /* 1792px */;
+  }
+  @media (width >= 128rem /* 2048px */) {
+    max-width: 128rem /* 2048px */;
   }
 }
 
-@utility animate-accordion-open-bounce {
-  animation: accordion-open-bounce 0.5s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(240px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.btn {
+  animation: slideInFromLeft 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    animation: none;
+  }
+}
+
+/* Hacemos equipo (desktop): título y descripción con entrada escalonada */
+@keyframes hacemosEquipoDesktopEntrance {
+  from {
+    opacity: 0;
+    transform: translateX(240px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hacemos-equipo-desktop-entrance {
+  animation: hacemosEquipoDesktopEntrance 1.5s cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.hacemos-equipo-desktop-entrance--delayed {
+  animation-delay: 0.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hacemos-equipo-desktop-entrance {
+    animation: none;
+  }
+}
+
+.nuestro-metodo-card-offscreen-transform {
+  transform: translateX(100%) rotate(16deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nuestro-metodo-card-offscreen-transform {
+    transform: none;
+  }
 }

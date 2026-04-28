@@ -21,6 +21,7 @@ export default function RootLayout({
     <html
       lang="es"
       className={`${geistMono.variable} h-full scroll-smooth antialiased motion-reduce:scroll-auto`}
+      data-scroll-behavior="smooth"
     >
       <head>
         <link rel="preconnect" href="https://fonts.cdnfonts.com" />

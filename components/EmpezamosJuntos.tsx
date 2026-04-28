@@ -47,7 +47,7 @@ export default function EmpezamosJuntos() {
       aria-label="Formulario de contacto"
       className="min-h-screen w-full scroll-mt-6 px-6 pt-10 pb-[max(2.5rem,env(safe-area-inset-bottom))]"
     >
-      <h2 className="text-brand-white mb-14 text-center font-sans text-2xl leading-6 font-normal -tracking-widest whitespace-pre-line not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
+      <h2 className="text-brand-white mb-12 text-center font-sans text-2xl leading-6 font-normal -tracking-widest whitespace-pre-line not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
         {"DINOS QUÉ TIENES EN MENTE\nY LO EMPEZAMOS JUNTOS"}
       </h2>
 
@@ -120,14 +120,14 @@ export default function EmpezamosJuntos() {
           })}
         />
 
-        <div className="pt-2">
+        <div>
           <div
             key={isValid ? "valid" : "pending"}
             className="animate-button-form motion-reduce:animate-none"
           >
             {isValid ? (
               <div className="flex flex-row items-center justify-between gap-4 rounded-lg bg-black/25 backdrop-blur-sm">
-                <p className="font-axiforma text-brand-cyan min-w-0 flex-1 self-center px-3.5 py-2 text-left text-sm leading-[18px] font-medium tracking-normal normal-case [leading-trim:both] [text-edge:cap_alphabetic]">
+                <p className="font-axiforma text-brand-cyan min-w-0 flex-1 self-center px-3.5 py-2 text-left text-xs leading-4 font-medium tracking-normal normal-case [leading-trim:both] [text-edge:cap_alphabetic]">
                   Revisa tus datos <br />
                   antes de confirmar.
                 </p>

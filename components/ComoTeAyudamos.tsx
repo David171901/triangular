@@ -2,7 +2,8 @@
 
 import clsx from "clsx";
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Code } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { Code } from "./Icons";
 
 interface Item {
   number: string;
@@ -97,8 +98,8 @@ function AccordionRow({
   onToggle: () => void;
 }) {
   return (
-    <section className="border-b border-white/25 py-5">
-      <p className="text-brand-white mb-6 font-sans text-sm font-normal tracking-tighter not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
+    <section className="isolate border-t border-b border-white/25 py-5">
+      <p className="text-brand-white mb-6 font-sans text-sm font-normal tracking-tighter not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-2xl lg:leading-8 lg:-tracking-tighter lg:[leading-trim:cap-height]">
         {item.number}
       </p>
 
@@ -106,15 +107,21 @@ function AccordionRow({
         onClick={onToggle}
         className="flex w-full items-start justify-between gap-3 text-left"
       >
-        <h3 className="text-brand-white font-sans text-2xl leading-6 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
+        <h3 className="text-brand-white font-sans text-2xl leading-6 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-4xl lg:leading-9 lg:-tracking-widest lg:[leading-trim:cap-height]">
           {item.title}
         </h3>
 
-        <span className="border-brand-indigo mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border">
+        <span className="border-brand-indigo xs:h-16 xs:w-16 mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border">
           {isOpen ? (
-            <ChevronUp size={24} className="text-brand-white" />
+            <ChevronUp
+              size={24}
+              className="text-brand-white xs:h-10 xs:w-10 h-5 w-5"
+            />
           ) : (
-            <ChevronDown size={24} className="text-brand-white" />
+            <ChevronDown
+              size={24}
+              className="text-brand-white xs:h-10 xs:w-10 h-5 w-5"
+            />
           )}
         </span>
       </button>
@@ -123,10 +130,10 @@ function AccordionRow({
         <p
           aria-hidden={isOpen || undefined}
           className={clsx(
-            "font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic]",
+            "font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-xl lg:leading-6 lg:tracking-normal lg:[leading-trim:cap-height]",
             "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
             isOpen
-              ? "pointer-events-none absolute inset-x-0 top-0 -translate-y-0.5 opacity-0"
+              ? "pointer-events-none absolute inset-x-0 top-0 z-0 -translate-y-0.5 opacity-0 lg:-translate-y-1"
               : "relative z-10 translate-y-0 opacity-100",
           )}
         >
@@ -135,11 +142,11 @@ function AccordionRow({
         <p
           aria-hidden={!isOpen || undefined}
           className={clsx(
-            "font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic]",
+            "font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-xl lg:leading-6 lg:tracking-normal lg:[leading-trim:cap-height]",
             "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
             isOpen
               ? "relative z-10 translate-y-0 opacity-100"
-              : "pointer-events-none absolute inset-x-0 top-0 translate-y-0.5 opacity-0",
+              : "pointer-events-none absolute inset-x-0 top-0 z-0 translate-y-0.5 opacity-0 lg:translate-y-1",
           )}
         >
           {item.description}
@@ -155,7 +162,7 @@ function AccordionRow({
         <div
           className={clsx(
             "min-h-0 overflow-hidden transition-opacity duration-300 ease-out motion-reduce:transition-none",
-            isOpen ? "opacity-100 animate-accordion-open-bounce motion-reduce:animate-none" : "opacity-0",
+            isOpen ? "opacity-100" : "opacity-0",
           )}
         >
           {item.sections && item.sections.length > 0 ? (
@@ -169,11 +176,11 @@ function AccordionRow({
                     {section.items.map((bullet) => (
                       <li key={bullet} className="flex items-start gap-2">
                         <Code
-                          size={12}
-                          color="white"
+                          width={12}
+                          height={12}
                           className="mt-[3px] shrink-0"
                         />
-                        <span className="font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
+                        <span className="font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-xl lg:leading-6 lg:tracking-normal lg:[leading-trim:cap-height]">
                           {bullet}
                         </span>
                       </li>
@@ -186,8 +193,8 @@ function AccordionRow({
             <ul className="flex flex-col gap-3">
               {item.items.map((bullet) => (
                 <li key={bullet} className="flex items-start gap-2">
-                  <Code size={12} color="white" className="mt-[3px] shrink-0" />
-                  <span className="font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
+                  <Code width={12} height={12} className="mt-[3px] shrink-0" />
+                  <span className="font-axiforma text-brand-white text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-xl lg:leading-6 lg:tracking-normal lg:[leading-trim:cap-height]">
                     {bullet}
                   </span>
                 </li>
@@ -208,26 +215,33 @@ export default function ComoTeAyudamos() {
   const toggle = (i: number) => setOpenIndex((prev) => (prev === i ? null : i));
 
   return (
-    <section className="w-full px-6 pt-16 pb-36">
-      <div className="mb-10">
-        <h2 className="text-brand-cyan mb-6 text-right font-sans text-4xl leading-9 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
-          CÓMO{"\n"}TE AYUDAMOS{"\n"}A CRECER
-        </h2>
-        <p className="font-axiforma text-brand-white text-right text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
-          Te ofrecemos soluciones pensadas para que tu marca crezca y llegue a
-          más personas.
-        </p>
-      </div>
+    <section className="bg-como-te-ayudamos-a-crecer">
+      <div className="xs:container xs:mx-auto xs:px-0 xs:grid xs:grid-cols-[2fr_1fr] xs:gap-9 xs:pt-0 xs:items-start w-full px-6 pt-16 pb-36 lg:pb-72">
+        <div className="xs:order-2 xs:mb-0 xs:sticky xs:top-[30vh] xs:self-start mb-10">
+          <h2 className="text-brand-cyan xs:text-5xl xs:leading-11 xs:-tracking-widest xs:[leading-trim:cap-height] mb-6 text-right font-sans text-4xl leading-9 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-7xl lg:leading-16">
+            <span className="xs:hidden block">
+              CÓMO{"\n"}TE AYUDAMOS{"\n"}A CRECER
+            </span>
+            <span className="xs:block hidden">
+              CÓMO TE {"\n"}AYUDAMOS{"\n"}A CRECER
+            </span>
+          </h2>
+          <p className="font-axiforma text-brand-white text-right text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-xl lg:leading-7 lg:tracking-normal lg:[leading-trim:cap-height]">
+            Te ofrecemos soluciones pensadas para que tu marca crezca y llegue a
+            más personas.
+          </p>
+        </div>
 
-      <div className="flex flex-col">
-        {DATA.map((item, i) => (
-          <AccordionRow
-            key={item.number}
-            item={item}
-            isOpen={openIndex === i}
-            onToggle={() => toggle(i)}
-          />
-        ))}
+        <div className="xs:order-1 xs:pt-64 flex flex-col lg:pt-96">
+          {DATA.map((item, i) => (
+            <AccordionRow
+              key={item.number}
+              item={item}
+              isOpen={openIndex === i}
+              onToggle={() => toggle(i)}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

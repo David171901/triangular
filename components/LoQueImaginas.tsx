@@ -17,14 +17,19 @@ export default function LoQueImaginas() {
           <ArrowLeft size={18} strokeWidth={2} className="text-brand-white" />
         </Link>
 
-        <Image
-          src="/images/LOGO_HERO.png"
-          alt="Triangular"
-          width={200}
-          height={48}
-          className="h-8 w-auto max-w-[min(200px,45vw)] object-contain object-right"
-          priority
-        />
+        <Link
+          href="/"
+          className="inline-block focus-visible:ring-brand-cyan focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
+        >
+          <Image
+            src="/images/LOGO_HERO.png"
+            alt="Triangular"
+            width={200}
+            height={48}
+            className="h-8 w-auto max-w-[min(200px,45vw)] object-contain object-right"
+            priority
+          />
+        </Link>
       </header>
 
       <div className="flex flex-1 flex-col items-center justify-center px-2 py-8">

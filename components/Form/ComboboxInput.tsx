@@ -86,7 +86,7 @@ export default function ComboboxInput<TFieldValues extends FieldValues>({
             <label
               id={`${id}-label`}
               htmlFor={id}
-              className="font-axiforma text-brand-white mb-3 text-base leading-6 font-medium tracking-normal normal-case not-italic [leading-trim:both] [text-edge:cap_alphabetic]"
+              className="font-axiforma text-brand-white mb-2 text-base leading-6 font-medium tracking-normal normal-case not-italic [leading-trim:both] [text-edge:cap_alphabetic]"
             >
               {label}
               {required ? "*" : ""}
@@ -106,7 +106,7 @@ export default function ComboboxInput<TFieldValues extends FieldValues>({
                 aria-labelledby={`${id}-label`}
                 aria-controls={listboxId}
                 className={clsx(
-                  "font-axiforma box-border flex h-14 w-full items-center justify-between gap-3 px-3.5 py-4 text-left text-base leading-5 font-medium",
+                  "font-axiforma box-border flex h-13 w-full items-center justify-between gap-3 px-3.5 py-4 text-left text-base leading-5 font-medium",
                   "ring-0 outline-none focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none",
                   open ? "rounded-t-lg rounded-b-none" : "rounded-lg",
                   filled ? "text-brand-white" : "text-brand-muted",
@@ -148,7 +148,7 @@ export default function ComboboxInput<TFieldValues extends FieldValues>({
                     role="listbox"
                     aria-labelledby={`${id}-label`}
                     aria-hidden={!open}
-                    className="border-brand-deep/25 bg-brand-violet-600 max-h-64 overflow-auto rounded-b-lg border border-t-0 py-1"
+                    className="border-brand-deep/25 bg-brand-blue max-h-64 overflow-auto rounded-b-lg border border-t-0 py-1"
                   >
                     {options.map((opt) => {
                       const active = field.value === opt.value;

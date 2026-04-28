@@ -85,7 +85,7 @@ const TextareaInput = forwardRef<HTMLTextAreaElement, TextareaInputProps>(
       <div className={clsx("flex flex-col", className)}>
         <label
           htmlFor={id}
-          className="font-axiforma text-brand-white mb-3 text-base leading-6 font-medium tracking-normal normal-case not-italic [leading-trim:both] [text-edge:cap_alphabetic]"
+          className="font-axiforma text-brand-white mb-2 text-base leading-6 font-medium tracking-normal normal-case not-italic [leading-trim:both] [text-edge:cap_alphabetic]"
         >
           {label}
           {required ? "*" : ""}
