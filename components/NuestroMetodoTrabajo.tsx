@@ -14,9 +14,10 @@ interface CardProps {
   number: string;
   title: string;
   description: string;
+  index: number;
 }
 
-function Card({ number, title, description }: CardProps) {
+function Card({ number, title, description, index }: CardProps) {
   const [open, setOpen] = useState(false);
   const [inView, setInView] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
@@ -42,11 +43,16 @@ function Card({ number, title, description }: CardProps) {
   }, [inView]);
 
   return (
-    <div ref={sentinelRef} className="relative h-56 w-full">
+    <div ref={sentinelRef} className="relative h-56 w-full max-w-[480px]">
       <section
         className={clsx(
           "bg-brand-gradient-card relative h-full overflow-hidden rounded-xl px-8 py-8 shadow-sm",
-          !inView && "nuestro-metodo-card-offscreen-transform",
+          !inView &&
+            index % 2 === 0 &&
+            "nuestro-metodo-card-offscreen-transform-right",
+          !inView &&
+            index % 2 === 1 &&
+            "nuestro-metodo-card-offscreen-transform-left xs:!nuestro-metodo-card-offscreen-transform-right",
           "transition-transform duration-1500 ease-[cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:transition-none",
         )}
       >
@@ -159,10 +165,11 @@ export default function NuestroMetodoTrabajo() {
           </p>
         </div>
 
-        <div className="xs:mb-0 xs:min-w-0 xs:pt-64 mb-10 flex w-full flex-col gap-8 overflow-x-clip overflow-y-visible lg:pt-96">
-          {DATA.map((card) => (
+        <div className="xs:mb-0 xs:min-w-0 xs:pt-64 xs:items-end mb-10 flex w-full flex-col gap-8 overflow-x-clip overflow-y-visible lg:pt-96">
+          {DATA.map((card, index) => (
             <Card
               key={card.number}
+              index={index}
               number={card.number}
               title={card.title}
               description={card.description}

@@ -19,21 +19,22 @@ export default function LoQueImaginas() {
 
         <Link
           href="/"
-          className="inline-block focus-visible:ring-brand-cyan focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
+          className="focus-visible:ring-brand-cyan inline-block focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
         >
           <Image
-            src="/images/LOGO_HERO.png"
+            src="/images/LOGO_HERO.svg"
             alt="Triangular"
-            width={200}
-            height={48}
+            width={252}
+            height={27}
             className="h-8 w-auto max-w-[min(200px,45vw)] object-contain object-right"
+            style={{ width: "auto", height: "auto" }}
             priority
           />
         </Link>
       </header>
-
+      {/* xs:items-start xs:text-left xs:text-5xl xs:leading-11 xs:-tracking-widest xs:[leading-trim:cap-height] flex flex-col items-center text-center font-sans text-4xl leading-11 font-normal -tracking-widest text-white uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-7xl lg:leading-16 */}
       <div className="flex flex-1 flex-col items-center justify-center px-2 py-8">
-        <h1 className="text-brand-cyan text-center font-sans text-4xl leading-none font-black -tracking-[0.08em] whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
+        <h1 className="xs:items-start xs:text-5xl xs:leading-11 xs:-tracking-widest xs:[leading-trim:cap-height] text-brand-cyan text-center font-sans text-4xl leading-none font-black -tracking-[0.08em] whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-7xl lg:leading-16">
           LO QUE{"\n"}IMAGINAS,{"\n"}EMPIEZA{"\n"}AQUÍ
         </h1>
       </div>

@@ -45,7 +45,7 @@ export default function Footer({ title, className }: FooterProps) {
         "xs:h-[66.6667vh] h-screen w-full lg:h-screen",
       )}
     >
-      <div className="xs:container xs:mx-auto xs:px-0 flex h-full w-full flex-col justify-between px-6 py-14">
+      <div className="xs:container xs:mx-auto xs:px-0 flex h-full w-full flex-col justify-between overflow-hidden px-6 py-14">
         <div>
           <h2 className="xs:text-left xs:text-5xl xs:leading-11 text-brand-white font-sans text-4xl leading-9 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:cap-height] [text-edge:cap_alphabetic] lg:text-7xl lg:leading-16">
             {title}
@@ -95,7 +95,9 @@ export default function Footer({ title, className }: FooterProps) {
                 ref={ctaRef}
                 href="/contactar"
                 className={clsx(
-                  ctaAnimated ? "btn motion-reduce:animate-none" : "opacity-0",
+                  ctaAnimated
+                    ? "footer-cta-contactar-enter motion-reduce:animate-none"
+                    : "opacity-0",
                   "text-brand-deep hover:bg-brand-yellow/75 active:bg-brand-yellow/85 bg-brand-yellow focus-visible:ring-brand-yellow/80 font-axiforma box-border inline-flex h-10 w-52 items-center justify-center rounded-sm px-4 text-sm leading-none font-bold tracking-wide uppercase not-italic shadow-[0_10px_28px_rgba(0,0,0,0.45)] transition-[transform,background-color] [leading-trim:both] [text-edge:cap_alphabetic] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none active:translate-y-px motion-safe:active:scale-[0.99]",
                 )}
               >

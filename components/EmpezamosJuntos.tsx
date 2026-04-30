@@ -45,7 +45,7 @@ export default function EmpezamosJuntos() {
     <section
       id="empezamos-juntos"
       aria-label="Formulario de contacto"
-      className="min-h-screen w-full scroll-mt-6 px-6 pt-10 pb-[max(2.5rem,env(safe-area-inset-bottom))]"
+      className="xs:container xs:mx-auto min-h-screen w-full scroll-mt-6 px-6 pt-10 pb-[max(2.5rem,env(safe-area-inset-bottom))]"
     >
       <h2 className="text-brand-white mb-12 text-center font-sans text-2xl leading-6 font-normal -tracking-widest whitespace-pre-line not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
         {"DINOS QUÉ TIENES EN MENTE\nY LO EMPEZAMOS JUNTOS"}
