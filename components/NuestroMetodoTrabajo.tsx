@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface Item {
   number: string;
@@ -19,40 +19,57 @@ interface CardProps {
 
 function Card({ number, title, description, index }: CardProps) {
   const [open, setOpen] = useState(false);
-  const [inView, setInView] = useState(false);
-  const sentinelRef = useRef<HTMLDivElement>(null);
+  const [entered, setEntered] = useState(false);
+  const cardContainerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const node = sentinelRef.current;
-    if (!node || inView) {
-      return;
-    }
+    const node = cardContainerRef.current;
+    const section = sectionRef.current;
+    if (!node || !section) return;
+
+    let inView = false;
+
+    const playEnter = () => {
+      setEntered(false);
+      requestAnimationFrame(() => {
+        void section.offsetHeight;
+        requestAnimationFrame(() => setEntered(true));
+      });
+    };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting) {
-          observer.disconnect();
-          setInView(true);
+        if (!entry) return;
+        if (entry.isIntersecting) {
+          if (inView) return;
+          inView = true;
+          playEnter();
+        } else {
+          inView = false;
+          setEntered(false);
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -6% 0px" },
+      {
+        threshold: 0.12,
+        rootMargin: `0px 0px -${6 + index * 14}% 0px`,
+      },
     );
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [inView]);
+  }, [index]);
+
+  const parity = index % 2 === 0 ? "even" : "odd";
 
   return (
-    <div ref={sentinelRef} className="relative h-56 w-full max-w-[480px]">
+    <div ref={cardContainerRef} className="relative h-56 w-full max-w-[480px]">
       <section
+        ref={sectionRef}
+        data-card-parity={parity}
         className={clsx(
-          "bg-brand-gradient-card relative h-full overflow-hidden rounded-xl px-8 py-8 shadow-sm",
-          !inView &&
-            index % 2 === 0 &&
-            "nuestro-metodo-card-offscreen-transform-right",
-          !inView &&
-            index % 2 === 1 &&
-            "nuestro-metodo-card-offscreen-transform-left xs:!nuestro-metodo-card-offscreen-transform-right",
+          "nuestro-metodo-card bg-brand-gradient-card relative h-full overflow-hidden rounded-xl px-8 py-8 shadow-sm",
+          entered && "nuestro-metodo-card-entered",
           "transition-transform duration-1500 ease-[cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:transition-none",
         )}
       >
@@ -90,15 +107,15 @@ function Card({ number, title, description, index }: CardProps) {
             aria-expanded={open}
             className="border-brand-indigo flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors active:bg-white/25"
           >
-            {open ? (
-              <ChevronDown size={24} className="text-brand-white" />
-            ) : (
-              <ChevronUp
-                size={24}
-                className="text-brand-white"
-                strokeWidth={2}
-              />
-            )}
+            <ChevronDown
+              size={24}
+              strokeWidth={2}
+              className={clsx(
+                "text-brand-white transition-transform duration-300 ease-out motion-reduce:transition-none",
+                open ? "rotate-0" : "-rotate-180",
+              )}
+              aria-hidden
+            />
           </button>
         </div>
 
@@ -156,7 +173,7 @@ export default function NuestroMetodoTrabajo() {
     <section className="bg-nuestro-metodo-de-trabajo">
       <div className="xs:grid xs:grid-cols-2 xs:items-start xs:gap-16 xs:container xs:mx-auto xs:px-0 xs:pt-48 xs:pb-32 w-full px-6 pt-36 pb-16">
         <div className="xs:sticky xs:top-[30vh] xs:mb-0 xs:self-start mb-10">
-          <h2 className="text-brand-cyan xs:text-left xs:text-5xl xs:leading-11 mb-6 text-right font-sans text-4xl leading-9 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-7xl lg:leading-16">
+          <h2 className="text-brand-cyan xs:text-left xs:text-4xl xs:leading-8 mb-6 text-right font-sans text-4xl leading-9 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic] sm:text-5xl sm:leading-11 lg:text-7xl lg:leading-16">
             NUESTRO{"\n"}MÉTODO DE{"\n"}TRABAJO
           </h2>
           <p className="font-axiforma text-brand-white xs:text-left text-right text-base leading-6 font-normal tracking-normal not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-xl lg:leading-7 lg:tracking-normal lg:whitespace-pre-line lg:[leading-trim:cap-height]">

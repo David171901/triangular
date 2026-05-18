@@ -7,7 +7,11 @@ export default function ContactoPage() {
     <main className="bg-contacto-page flex w-full flex-col">
       <LoQueImaginas />
       <EmpezamosJuntos />
-      <Footer title={"O PUEDES\nESCRIBIRNOS"} />
+      <Footer
+        showCtaButton={false}
+        desktopContactLayout="stacked"
+        title={"O PUEDES\nESCRIBIRNOS"}
+      />
     </main>
   );
 }

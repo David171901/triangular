@@ -35,6 +35,8 @@
 @theme inline {
   --breakpoint-xs: 36rem;
 
+  --text-45: 45px;
+
   /* Geometos: tipografía base (font-sans) */
   --font-sans: "Geometos", ui-sans-serif, system-ui, sans-serif;
   /* Axiforma: usar con font-axiforma (títulos, bloques, etc.) */
@@ -67,8 +69,8 @@
 
 @keyframes title-enter {
   from {
-    opacity: 0;
-    transform: translateY(0.35em);
+    opacity: 1;
+    transform: translateY(0);
   }
   to {
     opacity: 1;
@@ -80,10 +82,10 @@
   animation: title-enter 0.45s ease-out both;
 }
 
-@keyframes button-form-in {
+@keyframes form-hint-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(-12px);
   }
   to {
     opacity: 1;
@@ -91,8 +93,29 @@
   }
 }
 
-@utility animate-button-form {
-  animation: button-form-in 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+@utility animate-form-hint-in {
+  animation: form-hint-in 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes modal-slide-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@utility animate-modal-slide-from-left {
+  animation: modal-slide-from-left 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-modal-slide-from-left {
+    animation: none;
+  }
 }
 
 /* HOME: Cómo te ayudamos a crecer */
@@ -193,11 +216,10 @@
   }
 }
 
-/* Hacemos equipo (desktop): título y descripción con entrada escalonada */
 @keyframes hacemosEquipoDesktopEntrance {
   from {
     opacity: 0;
-    transform: translateX(240px);
+    transform: translateX(100%);
   }
   to {
     opacity: 1;
@@ -220,20 +242,35 @@
   }
 }
 
-.nuestro-metodo-card-offscreen-transform-right {
+.nuestro-metodo-card:not(
+    .nuestro-metodo-card-entered
+  )[data-card-parity="even"] {
   transform: translateX(100%) rotate(16deg);
 }
 
-.nuestro-metodo-card-offscreen-transform-left {
+.nuestro-metodo-card:not(.nuestro-metodo-card-entered)[data-card-parity="odd"] {
   transform: translateX(-100%) rotate(-16deg);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .nuestro-metodo-card-offscreen-transform-right {
-    transform: none;
+@media (width >= 36rem) {
+  .nuestro-metodo-card:not(
+      .nuestro-metodo-card-entered
+    )[data-card-parity="odd"] {
+    transform: translateX(100%) rotate(16deg);
   }
+}
 
-  .nuestro-metodo-card-offscreen-transform-left {
+.nuestro-metodo-card-entered {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nuestro-metodo-card:not(
+      .nuestro-metodo-card-entered
+    )[data-card-parity="even"],
+  .nuestro-metodo-card:not(
+      .nuestro-metodo-card-entered
+    )[data-card-parity="odd"] {
     transform: none;
   }
 }

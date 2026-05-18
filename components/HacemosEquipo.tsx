@@ -14,11 +14,17 @@ export default function HacemosEquipo() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry?.isIntersecting) return;
-        setCopyVisible(true);
-        observer.disconnect();
+        const isIntersecting = !!entry?.isIntersecting;
+        if (isIntersecting) {
+          setCopyVisible(false);
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => setCopyVisible(true));
+          });
+        } else {
+          setCopyVisible(false);
+        }
       },
-      { threshold: 0.15 },
+      { threshold: 0.1 },
     );
 
     observer.observe(el);
@@ -65,7 +71,7 @@ export default function HacemosEquipo() {
               ref={copyBlockRef}
               className="xs:items-end xs:text-right flex max-w-[520px] flex-col items-center text-center"
             >
-              <h2 className="text-brand-purple xs:text-5xl xs:leading-11 mb-6 font-sans text-4xl leading-9 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-7xl lg:leading-16 lg:-tracking-widest">
+              <h2 className="text-brand-purple xs:text-4xl xs:leading-8 mb-6 font-sans text-4xl leading-9 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic] sm:text-5xl sm:leading-11 lg:text-7xl lg:leading-16 lg:-tracking-widest">
                 <span className="xs:hidden block">{`HACEMOS \nEQUIPO CON \nTU MARCA`}</span>
                 <span
                   className={clsx(

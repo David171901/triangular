@@ -99,7 +99,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           aria-invalid={error ? "true" : undefined}
           aria-describedby={error ? `${id}-error` : undefined}
           className={clsx(
-            "font-axiforma text-brand-white box-border h-13 w-full rounded-lg px-3.5 py-4 text-base leading-5",
+            "font-axiforma text-brand-white box-border h-13 w-full rounded-lg px-3.5 pt-4 pb-3 text-base leading-5",
             "normal-case",
             "placeholder:text-brand-muted",
             "ring-0 outline-none focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none",

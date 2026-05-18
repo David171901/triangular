@@ -106,7 +106,7 @@ export default function ComboboxInput<TFieldValues extends FieldValues>({
                 aria-labelledby={`${id}-label`}
                 aria-controls={listboxId}
                 className={clsx(
-                  "font-axiforma box-border flex h-13 w-full items-center justify-between gap-3 px-3.5 py-4 text-left text-base leading-5 font-medium",
+                  "font-axiforma box-border flex h-13 w-full items-center justify-between gap-3 px-3.5 pt-4 pb-3 text-left text-base leading-5 font-medium",
                   "ring-0 outline-none focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none",
                   open ? "rounded-t-lg rounded-b-none" : "rounded-lg",
                   filled ? "text-brand-white" : "text-brand-muted",

@@ -95,7 +95,7 @@ function Mobile({
 
 function Desktop() {
   return (
-    <div className="xs:grid xs:grid-cols-3 xs:items-stretch xs:gap-8 hidden">
+    <div className="xs:grid xs:grid-cols-3 xs:items-stretch xs:gap-4 hidden sm:gap-8">
       <div className="xs:pb-0 xs:pt-64 flex flex-col gap-32 py-20 lg:pt-96">
         <div className="relative w-full">
           <Image
@@ -120,7 +120,7 @@ function Desktop() {
       </div>
       <div className="min-h-0">
         <div className="xs:sticky xs:top-[30vh] xs:mb-0 min-h-0">
-          <h2 className="text-brand-cyan mb-8 text-center font-sans text-5xl leading-11 font-normal -tracking-widest uppercase not-italic [leading-trim:cap-height] [text-edge:cap_alphabetic] lg:text-7xl lg:leading-16">
+          <h2 className="text-brand-cyan xs:text-4xl xs:leading-8 mb-8 text-center font-sans text-5xl leading-11 font-normal -tracking-widest uppercase not-italic [leading-trim:cap-height] [text-edge:cap_alphabetic] sm:text-5xl sm:leading-11 lg:text-7xl lg:leading-16">
             ¿Quiénes somos?
           </h2>
           <p className="font-axiforma text-brand-white text-center text-base leading-6 font-normal tracking-normal whitespace-pre-line not-italic [leading-trim:both] [text-edge:cap_alphabetic] lg:text-xl lg:leading-7 lg:tracking-normal lg:[leading-trim:cap-height]">
