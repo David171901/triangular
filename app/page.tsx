@@ -1,4 +1,5 @@
 // # TODO: review code
+import type { Metadata } from "next";
 import Footer from "../components/Footer";
 import HacemosEquipo from "../components/HacemosEquipo";
 import QuienesSomos from "../components/QuienesSomos";
@@ -6,6 +7,14 @@ import ComoTeAyudamos from "../components/ComoTeAyudamos";
 import PotenciaTuMarca from "../components/PotenciaTuMarca";
 import NuestroMetodoTrabajo from "../components/NuestroMetodoTrabajo";
 import IniciarProyectoFlotante from "@/components/IniciarProyectoFlotante";
+
+export const metadata: Metadata = {
+  description:
+    "Potencia tu marca con una web o app a medida. Diseño UX/UI, cómo te ayudamos a crecer, quiénes somos y nuestro método de trabajo: estrategia digital con resultados.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   return (
