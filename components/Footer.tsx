@@ -95,7 +95,7 @@ export default function Footer({
       data-footer
       className={clsx(className, "xs:h-[65vh] h-screen w-full lg:h-screen")}
     >
-      <div className="xs:container xs:mx-auto xs:px-0 flex h-full w-full flex-col justify-between overflow-hidden px-6 py-14">
+      <div className="xs:container xs:mx-auto xs:px-0 flex h-full w-full flex-col justify-between overflow-hidden px-4 py-14">
         <div>
           <h2 className="xs:text-left text-brand-white xs:text-4xl xs:leading-8 font-sans text-4xl leading-9 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:cap-height] [text-edge:cap_alphabetic] sm:text-5xl sm:leading-11 lg:text-7xl lg:leading-16">
             {title}

@@ -115,7 +115,7 @@ function AccordionRow({
           <ChevronDown
             size={24}
             className={clsx(
-              "text-brand-white transition-transform duration-300 ease-out xs:size-8 size-5 sm:size-10 motion-reduce:transition-none",
+              "text-brand-white xs:size-8 size-5 transition-transform duration-300 ease-out motion-reduce:transition-none sm:size-10",
               isOpen ? "-rotate-180" : "rotate-0",
             )}
             strokeWidth={2}
@@ -167,10 +167,10 @@ function AccordionRow({
             <div className="flex flex-col gap-5">
               {item.sections.map((section) => (
                 <div key={section.title}>
-                  <p className="font-axiforma text-brand-white mb-3 text-[15px] leading-[22px] font-medium tracking-[0px] not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
+                  <p className="font-axiforma text-brand-white mb-2 text-[15px] leading-[22px] font-medium tracking-[0px] not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
                     {section.title}
                   </p>
-                  <ul className="flex flex-col gap-2.5">
+                  <ul className="flex flex-col gap-1">
                     {section.items.map((bullet) => (
                       <li key={bullet} className="flex items-start gap-2">
                         <Code
@@ -188,7 +188,7 @@ function AccordionRow({
               ))}
             </div>
           ) : item.items && item.items.length > 0 ? (
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-1">
               {item.items.map((bullet) => (
                 <li key={bullet} className="flex items-start gap-2">
                   <Code width={12} height={12} className="mt-[3px] shrink-0" />
@@ -214,7 +214,7 @@ export default function ComoTeAyudamos() {
 
   return (
     <section className="bg-como-te-ayudamos-a-crecer">
-      <div className="xs:container xs:mx-auto xs:px-0 xs:grid xs:grid-cols-[2fr_1fr] xs:gap-9 xs:pt-0 xs:items-start w-full px-6 pt-16 pb-36 lg:pb-72">
+      <div className="xs:container xs:mx-auto xs:px-0 xs:grid xs:grid-cols-[2fr_1fr] xs:gap-9 xs:pt-0 xs:items-start w-full px-4 pt-16 pb-36 lg:pb-72">
         <div className="xs:order-2 xs:mb-0 xs:sticky xs:top-[30vh] xs:self-start mb-10">
           <h2 className="text-brand-cyan xs:text-4xl xs:leading-8 xs:-tracking-widest xs:[leading-trim:cap-height] mb-6 text-right font-sans text-4xl leading-9 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic] sm:text-5xl sm:leading-11 lg:text-7xl lg:leading-16">
             <span className="xs:hidden block">

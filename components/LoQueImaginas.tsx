@@ -6,7 +6,7 @@ export default function LoQueImaginas() {
   return (
     <section
       aria-label="Contacto"
-      className="flex min-h-screen w-full flex-col justify-between px-6 pt-5 pb-10"
+      className="flex min-h-screen w-full flex-col justify-between px-4 pt-5 pb-10"
     >
       <header className="mx-auto flex w-full items-center justify-between">
         <Link

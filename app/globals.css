@@ -216,6 +216,48 @@
   }
 }
 
+@keyframes iniciar-proyecto-float-exit-desktop {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(calc(-100% - 1.25rem), 0, 0);
+  }
+}
+
+@keyframes iniciar-proyecto-float-exit-mobile {
+  from {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(calc(-50% + (-100vw)), 0, 0);
+  }
+}
+
+.iniciar-proyecto-float-exit-desktop {
+  animation: iniciar-proyecto-float-exit-desktop 1.5s
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.iniciar-proyecto-float-exit-mobile {
+  animation: iniciar-proyecto-float-exit-mobile 1.5s
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iniciar-proyecto-float-exit-desktop,
+  .iniciar-proyecto-float-exit-mobile {
+    animation: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 @keyframes hacemosEquipoDesktopEntrance {
   from {
     opacity: 0;
@@ -245,18 +287,18 @@
 .nuestro-metodo-card:not(
     .nuestro-metodo-card-entered
   )[data-card-parity="even"] {
-  transform: translateX(100%) rotate(16deg);
+  transform: translateX(calc(100% + max(3rem, 8vw))) rotate(16deg);
 }
 
 .nuestro-metodo-card:not(.nuestro-metodo-card-entered)[data-card-parity="odd"] {
-  transform: translateX(-100%) rotate(-16deg);
+  transform: translateX(calc(-100% - max(3rem, 8vw))) rotate(-16deg);
 }
 
 @media (width >= 36rem) {
   .nuestro-metodo-card:not(
       .nuestro-metodo-card-entered
     )[data-card-parity="odd"] {
-    transform: translateX(100%) rotate(16deg);
+    transform: translateX(calc(100% + max(3rem, 8vw))) rotate(16deg);
   }
 }
 

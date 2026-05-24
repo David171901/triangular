@@ -60,7 +60,7 @@ export default function PotenciaTuMarca() {
         />
 
         <div
-          className="xs:container xs:mx-auto xs:px-0 xs:pt-4 absolute inset-0 z-10 px-6 pt-6 pb-10"
+          className="xs:container xs:mx-auto xs:px-0 xs:pt-4 absolute inset-0 z-10 px-4 pt-6 pb-10"
           data-site-container
         >
           <header className="relative z-10 flex w-full justify-end">

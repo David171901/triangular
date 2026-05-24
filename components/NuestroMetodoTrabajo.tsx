@@ -171,7 +171,7 @@ const DATA: Item[] = [
 export default function NuestroMetodoTrabajo() {
   return (
     <section className="bg-nuestro-metodo-de-trabajo">
-      <div className="xs:grid xs:grid-cols-2 xs:items-start xs:gap-16 xs:container xs:mx-auto xs:px-0 xs:pt-48 xs:pb-32 w-full px-6 pt-36 pb-16">
+      <div className="xs:grid xs:grid-cols-2 xs:items-start xs:gap-16 xs:container xs:mx-auto xs:px-0 xs:pt-48 xs:pb-32 w-full px-4 pt-36 pb-16">
         <div className="xs:sticky xs:top-[30vh] xs:mb-0 xs:self-start mb-10">
           <h2 className="text-brand-cyan xs:text-left xs:text-4xl xs:leading-8 mb-6 text-right font-sans text-4xl leading-9 font-normal -tracking-widest whitespace-pre-line uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic] sm:text-5xl sm:leading-11 lg:text-7xl lg:leading-16">
             NUESTRO{"\n"}MÉTODO DE{"\n"}TRABAJO

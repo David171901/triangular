@@ -66,7 +66,7 @@ export default function HacemosEquipo() {
           className="to-brand-violet-ink xs:h-28 pointer-events-none absolute inset-x-0 bottom-0 z-5 h-24 bg-linear-to-b from-transparent"
         />
         <div className="absolute inset-0 z-10">
-          <div className="xs:container xs:mx-auto xs:items-center xs:justify-end xs:px-0 xs:pt-0 flex h-full w-full items-start justify-center overflow-hidden px-6 pt-28">
+          <div className="xs:container xs:mx-auto xs:items-center xs:justify-end xs:px-0 xs:pt-0 flex h-full w-full items-start justify-center overflow-hidden px-4 pt-28">
             <div
               ref={copyBlockRef}
               className="xs:items-end xs:text-right flex max-w-[520px] flex-col items-center text-center"

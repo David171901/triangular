@@ -7,6 +7,7 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useRef,
   useState,
   useSyncExternalStore,
 } from "react";
@@ -16,10 +17,33 @@ const subscribeNothing = () => () => {};
 
 const DESKTOP_MEDIA = "(min-width: 36rem)";
 
+const EXIT_ANIMATION_SUBSTRINGS = [
+  "iniciar-proyecto-float-exit-desktop",
+  "iniciar-proyecto-float-exit-mobile",
+];
+
 function useIsClient() {
   return useSyncExternalStore(
     subscribeNothing,
     () => true,
+    () => false,
+  );
+}
+
+function subscribeDesktopMq(onStoreChange: () => void) {
+  const mq = window.matchMedia(DESKTOP_MEDIA);
+  mq.addEventListener("change", onStoreChange);
+  return () => mq.removeEventListener("change", onStoreChange);
+}
+
+function getDesktopMqSnapshot(): boolean {
+  return window.matchMedia(DESKTOP_MEDIA).matches;
+}
+
+function useMediaMinWidthXs(): boolean {
+  return useSyncExternalStore(
+    subscribeDesktopMq,
+    getDesktopMqSnapshot,
     () => false,
   );
 }
@@ -29,12 +53,21 @@ type Props = {
 };
 
 export default function IniciarProyectoFlotante({ children }: Props) {
-  const [visible, setVisible] = useState(true);
+  const [wantShow, setWantShow] = useState(true);
+  const [exitPhase, setExitPhase] = useState<"idle" | "running" | "complete">(
+    "idle",
+  );
   const [desktopPos, setDesktopPos] = useState<{
     top: number;
     left: number;
   } | null>(null);
   const isClient = useIsClient();
+  const isDesktopLayout = useMediaMinWidthXs();
+  const wantShowRef = useRef(wantShow);
+
+  useEffect(() => {
+    wantShowRef.current = wantShow;
+  }, [wantShow]);
 
   useEffect(() => {
     const footerEl =
@@ -44,7 +77,24 @@ export default function IniciarProyectoFlotante({ children }: Props) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setVisible(!entry.isIntersecting);
+        const show = !entry?.isIntersecting;
+        wantShowRef.current = show;
+        setWantShow(show);
+
+        if (show) {
+          setExitPhase("idle");
+          return;
+        }
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        setExitPhase((prev) => {
+          if (reduceMotion) return "complete";
+          if (prev === "complete") return "complete";
+          return "running";
+        });
       },
       { threshold: 0 },
     );
@@ -127,15 +177,36 @@ export default function IniciarProyectoFlotante({ children }: Props) {
     };
   }, [isClient, updateDesktopPosition]);
 
+  const hideAfterExit = exitPhase === "complete";
+  const isExitAnimating = exitPhase === "running";
+
+  function handleExitAnimationEnd(e: React.AnimationEvent<HTMLAnchorElement>) {
+    if (!EXIT_ANIMATION_SUBSTRINGS.some((s) => e.animationName.includes(s))) {
+      return;
+    }
+    if (wantShowRef.current) {
+      setExitPhase("idle");
+      return;
+    }
+    setExitPhase("complete");
+  }
+
+  const exitClass =
+    isExitAnimating && isDesktopLayout
+      ? "iniciar-proyecto-float-exit-desktop motion-safe:transition-none"
+      : isExitAnimating && !isDesktopLayout
+        ? "iniciar-proyecto-float-exit-mobile motion-safe:transition-none"
+        : "";
+
   const button = (
     <Link
       href="/contactar"
-      tabIndex={visible ? 0 : -1}
-      aria-hidden={!visible}
-      className="hover:bg-brand-yellow/75 active:bg-brand-yellow/75 bg-brand-yellow focus-visible:ring-brand-yellow/75 xs:bottom-auto xs:translate-x-0 max-xs:bottom-[max(1.25rem,env(safe-area-inset-bottom))] max-xs:left-1/2 max-xs:-translate-x-1/2 fixed z-100 box-border flex h-10 w-52 items-center justify-center rounded-sm px-4 shadow-[0_10px_28px_rgba(0,0,0,0.45)] transition-[top,left,transform,background-color] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none active:translate-y-px motion-safe:active:scale-95 motion-reduce:transition-none"
+      tabIndex={wantShow && exitPhase === "idle" ? 0 : -1}
+      aria-hidden={!wantShow || hideAfterExit}
+      className={`hover:bg-brand-yellow/75 active:bg-brand-yellow/75 bg-brand-yellow focus-visible:ring-brand-yellow/75 xs:bottom-auto max-xs:left-1/2 max-xs:bottom-[max(1.25rem,env(safe-area-inset-bottom))] fixed z-100 box-border flex h-10 w-52 items-center justify-center rounded-sm px-4 shadow-[0_10px_28px_rgba(0,0,0,0.45)] transition-[top,left,background-color] duration-150 ease-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none active:translate-y-px motion-safe:active:scale-95 motion-reduce:transition-none ${wantShow && exitPhase !== "running" ? "xs:translate-x-0 max-xs:-translate-x-1/2" : ""} ${exitClass}`}
       style={{
-        visibility: visible ? "visible" : "hidden",
-        pointerEvents: visible ? "auto" : "none",
+        visibility: hideAfterExit ? "hidden" : "visible",
+        pointerEvents: wantShow && exitPhase === "idle" ? "auto" : "none",
         ...(desktopPos
           ? {
               top: desktopPos.top,
@@ -143,6 +214,7 @@ export default function IniciarProyectoFlotante({ children }: Props) {
             }
           : {}),
       }}
+      onAnimationEnd={handleExitAnimationEnd}
     >
       <span className="text-brand-deep font-axiforma text-sm leading-none font-bold tracking-wide uppercase not-italic [leading-trim:cap-height] [text-edge:cap_alphabetic]">
         Iniciar un proyecto

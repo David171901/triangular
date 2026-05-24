@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 const DESKTOP_MQ = "(min-width: 36rem)";
 
@@ -34,17 +34,25 @@ function Mobile({
   firstImageRef,
   lastImageRef,
   overlayRef,
+  overlayTranslateY,
 }: {
   firstImageRef: React.RefObject<HTMLDivElement | null>;
   lastImageRef: React.RefObject<HTMLDivElement | null>;
   overlayRef: React.RefObject<HTMLDivElement | null>;
+  overlayTranslateY: number | null;
 }) {
   return (
     <div className="xs:hidden flex w-full flex-col">
       <div
         ref={overlayRef}
-        className="fixed top-0 left-0 z-10 w-1/2 pl-6 will-change-transform"
-        style={{ transform: "translate3d(0,0,0)" }}
+        className="fixed top-0 left-0 z-10 w-1/2 pl-2 will-change-transform"
+        style={{
+          visibility: overlayTranslateY === null ? "hidden" : "visible",
+          transform:
+            overlayTranslateY === null
+              ? undefined
+              : `translate3d(0, ${overlayTranslateY}px, 0)`,
+        }}
       >
         <h2 className="text-brand-cyan mb-8 font-sans text-4xl leading-9 font-normal -tracking-widest uppercase not-italic [leading-trim:both] [text-edge:cap_alphabetic]">
           ¿Quiénes somos?
@@ -156,12 +164,18 @@ export default function QuienesSomos() {
   const firstImageRef = useRef<HTMLDivElement>(null);
   const lastImageRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const [overlayTranslateY, setOverlayTranslateY] = useState<number | null>(
+    null,
+  );
 
   useLayoutEffect(() => {
     let rafId: number | null = null;
 
     const update = () => {
-      if (window.matchMedia(DESKTOP_MQ).matches) return;
+      if (window.matchMedia(DESKTOP_MQ).matches) {
+        setOverlayTranslateY(null);
+        return;
+      }
 
       const section = sectionRef.current;
       const firstEl = firstImageRef.current;
@@ -170,7 +184,7 @@ export default function QuienesSomos() {
       if (!section || !firstEl || !lastEl || !overlay) return;
 
       const next = computeOverlayTop(section, firstEl, lastEl, overlay);
-      overlay.style.transform = `translate3d(0, ${next}px, 0)`;
+      setOverlayTranslateY(next);
     };
 
     const scheduleUpdate = () => {
@@ -230,6 +244,7 @@ export default function QuienesSomos() {
         firstImageRef={firstImageRef}
         lastImageRef={lastImageRef}
         overlayRef={overlayRef}
+        overlayTranslateY={overlayTranslateY}
       />
       <Desktop />
     </section>
